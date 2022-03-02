@@ -8,7 +8,7 @@ export default {
       currentMusicId: '', // 当前播放音乐id
       currentMusicIndex: '', // 当前播放音乐在列表的索引值
       currentMusicDetail: {}, // 当前播放音乐的详情
-      currentPlaybackState: true, // 当前播放状态 true 播放 false暂停
+      currentPlaybackState: false, // 当前播放状态 true 播放 false暂停
       currentMusicTotalDuration: '00:00', // 当前播放音乐的总时长
       currentDuration: '00:00', // 当前播放音乐的时间已经到哪了
       playOrder: 0, // 播放顺序 0 顺序 1 循环 2 无序
@@ -39,6 +39,10 @@ export default {
     // 当前播放音乐总时长
     changeCurrentMusicTotalDuration(state, data) {
       state.currentMusicTotalDuration = data
+    },
+    // 播放状态
+    changeCurrentPlaybackState(state, data) {
+      state.currentPlaybackState = data
     },
   },
   actions: {

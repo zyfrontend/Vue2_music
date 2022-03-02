@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div class="scrollbar">
     <Carousel :bannerData="banners"></Carousel>
     <ContentBox title="推荐歌单">
       <el-row>
-        <el-col class="test" :xl="6" v-for="item in recommendMusicList" :key="item.id">
+        <el-col class="test" :xs="12" :sm="8" :md="8" :xl="6" :lg="6" v-for="item in recommendMusicList" :key="item.id">
           <CoverBox @coverBoxClick="coverClick(item)" :imgUrl="item.picUrl" :dataName="item.name"></CoverBox>
         </el-col>
       </el-row>

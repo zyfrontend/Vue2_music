@@ -1,6 +1,6 @@
 <template>
   <div class="side-bar">
-    <div class="title">ZY音乐</div>
+    <div class="title"><i class="iconfont icon-yinle" />ZY音乐</div>
     <div>
       <router-link class="link-item" v-for="item in routes" :key="item.path" :to="item.path">
         <i :class="item.meta.icon"></i>
@@ -36,6 +36,10 @@ export default {
   height: 100%;
   background-color: #171718;
   padding: 0 15px;
+  .icon-yinle {
+    font-size: 40px;
+    margin-right: 10px;
+  }
   a {
     text-decoration: none;
     display: block;

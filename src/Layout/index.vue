@@ -5,7 +5,9 @@
       <SideBar :routes="routes"></SideBar>
     </el-aside>
     <el-container style="background-color: #1e1e1f">
-      <el-header style="height: 78px"> 1111 </el-header>
+      <el-header height="100px" class="header-box">
+        <div class="avatar"><i class="iconfont icon-24gl-userGroup"></i></div>
+      </el-header>
       <el-main class="layout-main">
         <transition :name="transitionName">
           <slot></slot>
@@ -57,9 +59,38 @@ export default {
   height: 100vh;
   min-width: 1600px;
   position: relative;
+  .header-box {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  .avatar {
+    width: 78px;
+    height: 78px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .iconfont {
+      font-size: 35px;
+    }
+    &:hover {
+      background-color: #8e44ad;
+      color: white;
+    }
+    img {
+      width: 100%;
+    }
+  }
   .layout-main {
     overflow-x: hidden;
     overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar {
+      display: none; /* Chrome Safari */
+    }
   }
 }
 

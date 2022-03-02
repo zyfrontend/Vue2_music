@@ -6,5 +6,7 @@ const getters = {
   playlist: state => state.PlayBar.playlist,
   currentDuration: state => state.PlayBar.currentDuration,
   currentMusicTotalDuration: state => state.PlayBar.currentMusicTotalDuration,
+  currentMusicDetail: state => state.PlayBar.currentMusicDetail,
+  currentPlaybackState: state => state.PlayBar.currentPlaybackState,
 }
 export default getters
