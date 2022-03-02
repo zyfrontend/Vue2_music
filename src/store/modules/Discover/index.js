@@ -24,7 +24,7 @@ export default {
     },
     // 推荐歌单
     async getRecommendMusicListAction({ commit }) {
-      const res = await request('/personalized', { limit: 12 })
+      const res = await request('/personalized', { limit: 8 })
       commit('changeStateRecommendMusicList', res.data.result)
     },
   },

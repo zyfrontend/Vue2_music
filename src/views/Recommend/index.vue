@@ -2,8 +2,8 @@
   <div>
     <Carousel :bannerData="banners"></Carousel>
     <ContentBox title="推荐歌单">
-      <el-row :gutter="20">
-        <el-col :md="8" :lg="6" :xl="4" v-for="item in recommendMusicList" :key="item.id">
+      <el-row>
+        <el-col class="test" :xl="6" v-for="item in recommendMusicList" :key="item.id">
           <CoverBox @coverBoxClick="coverClick(item)" :imgUrl="item.picUrl" :dataName="item.name"></CoverBox>
         </el-col>
       </el-row>
@@ -44,3 +44,10 @@ export default {
   },
 }
 </script>
+
+<style>
+.test {
+  display: flex;
+  justify-content: center;
+}
+</style>
