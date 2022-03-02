@@ -43,6 +43,12 @@ const routes = [
     show: false,
     component: () => import('@/views/PlaylistDetail'),
   },
+  {
+    path: '/musicdetail',
+    name: 'MusicDetail',
+    show: false,
+    component: () => import('@/views/MusicDetail'),
+  },
 ]
 
 const router = new VueRouter({

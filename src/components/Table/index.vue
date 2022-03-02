@@ -40,6 +40,7 @@ export default {
     '$store.state.PlayBar.currentMusicId': {
       handler: function (val) {
         const curr = this.$props.tableData.findIndex(item => item.id === val)
+        console.log('curr', curr)
         this.$store.commit('PlayBar/changeCurrentMusicIndex', curr)
       },
       deep: true,

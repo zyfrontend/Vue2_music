@@ -10,5 +10,10 @@
 import Layout from '@/Layout'
 export default {
   components: { Layout },
+  mounted() {
+    window.addEventListener('unload', () => {
+      console.log('刷新了')
+    })
+  },
 }
 </script>

@@ -5,7 +5,7 @@
     </div>
     <div class="content">
       <div class="left">
-        <div class="cover">
+        <div class="cover" @click="gotoMusicDetail">
           <img :src="currentMusicDetail.al ? currentMusicDetail.al.picUrl : ''" alt="" />
         </div>
         <div class="detail">
@@ -25,7 +25,10 @@
             <i v-else class="iconfont icon-24gf-pauseCircle"></i>
           </div>
           <i @click="switchMusic('next')" class="hov iconfont icon-xiayishou"></i>
-          <i class="hov iconfont icon-24gl-volumeLow"></i>
+          <el-tooltip placement="top">
+            <div slot="content">111</div>
+            <i class="hov iconfont icon-24gl-volumeLow"></i>
+          </el-tooltip>
         </div>
       </div>
       <div class="right">
@@ -131,7 +134,7 @@ export default {
     },
     // 拖动进度条
     changeProgress(e) {
-      let time = Math.floor((e / 100) * durationNum)
+      let time = Math.floor((e / 100) * durationNum) + 1
       this.$refs.audioPlayer.currentTime = time
     },
 
@@ -153,6 +156,13 @@ export default {
     pauseMusic() {
       this.$refs.audioPlayer.pause()
     },
+
+    // 单曲详情跳转
+    gotoMusicDetail() {
+      this.$router.push({
+        path: '/musicdetail',
+      })
+    },
   },
   watch: {
     '$store.state.PlayBar.currentMusicId': {
@@ -161,14 +171,14 @@ export default {
         this.musicUrl = getPlaySong(val)
         // 获取当前id 音乐的详情
         this.$store.dispatch('PlayBar/getCurrentMusicDetail', val)
+        // 根据当前获取到的id去更新索引
+        let currentIndex = this.playlist.findIndex(item => item.id === val)
+        this.$store.commit('PlayBar/changeCurrentMusicIndex', currentIndex)
+        this.$store.commit('PlayBar/changeCurrentMusicTotalDuration', this.playlist[currentIndex].dt)
+        console.log('根据当前获取到的id去更新索引', currentIndex)
       },
       deep: true,
-    },
-    '$store.state.PlayBar.currentPlaybackState': {
-      handler: function (bool) {
-        console.log(bool)
-      },
-      deep: true,
+      immediate: true,
     },
   },
 }
@@ -221,6 +231,10 @@ export default {
           display: inline-block;
           color: white;
           cursor: pointer;
+          max-width: 300px;
+          overflow: hidden; //超出的文本隐藏
+          text-overflow: ellipsis; //用省略号显示
+          white-space: nowrap; //不换行
         }
       }
     }

@@ -37,11 +37,12 @@ export function formatYearMonthDay(time) {
   return formatDate(time, 'yyyy-MM-dd')
 }
 
-export function returnSecond(time) {
-  time = time.split(':')
-  let m = parseInt(time[0])
-  let s = parseInt(time[1])
-  return m * 60 + s
+export function returnSecond(times) {
+  times = times.split(':')
+  let m = parseInt(times[0])
+  let s = parseInt(times[1])
+  let t = m * 60 + s
+  return t
 }
 
 //秒转化成 时分秒
@@ -58,4 +59,16 @@ export function handleMusicTime(time) {
   m = m < 10 ? '0' + m : m
   s = s < 10 ? '0' + s : s
   return m + ':' + s
+}
+
+export function setStorage(key, value) {
+  if (typeof value !== 'string') {
+    value = JSON.stringify(value)
+    window.sessionStorage.setItem(key, value)
+  }
+  window.sessionStorage.setItem(key, value)
+}
+export function getStorage(key) {
+  const value = JSON.parse(window.sessionStorage.getItem(key))
+  return value
 }
