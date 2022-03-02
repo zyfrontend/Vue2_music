@@ -1,5 +1,7 @@
+import { request } from '@/services'
 // 当前 vuex 数据存放到 sessionStorage 里面 关闭页面自动清空数据
-import { setStorage, getStorage } from '@/utils'
+
+import { setStorage, getStorage, parseLyric } from '@/utils'
 export default {
   namespaced: true,
   state() {
@@ -11,6 +13,7 @@ export default {
       currentPlaybackState: false, // 当前播放状态 true 播放 false暂停
       currentMusicTotalDuration: '00:00', // 当前播放音乐的总时长
       currentDuration: '00:00', // 当前播放音乐的时间已经到哪了
+      currentMusicLyric: [], // 当前歌曲的歌词
     }
   },
   mutations: {
@@ -45,6 +48,10 @@ export default {
     changeCurrentPlaybackState(state, data) {
       state.currentPlaybackState = data
     },
+    // 当前歌曲的歌词
+    changeCurrentMusicLyric(state, data) {
+      state.currentMusicLyric = data
+    },
   },
   actions: {
     getCurrentMusicDetail({ commit, state }, id) {
@@ -52,6 +59,13 @@ export default {
       if (index != -1) {
         commit('changeCurrentMusicDetail', state.playlist[index])
       }
+    },
+    async getCurrentMusicLyric({ commit }, id) {
+      let res = await request(`/lyric?id=${id}`)
+
+      // 歌词截取
+      const lyric = parseLyric(res.data.lrc.lyric)
+      commit('changeCurrentMusicLyric', lyric)
     },
   },
 }

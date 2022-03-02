@@ -40,7 +40,6 @@ export default {
     '$store.state.PlayBar.currentMusicId': {
       handler: function (val) {
         const curr = this.$props.tableData.findIndex(item => item.id === val)
-        console.log('curr', curr)
         this.$store.commit('PlayBar/changeCurrentMusicIndex', curr)
       },
       deep: true,
@@ -72,6 +71,7 @@ export default {
   }
   .tr-tbody {
     padding: 0 20px;
+    transition: all 0.4s;
     &:hover {
       background-color: #242425;
     }

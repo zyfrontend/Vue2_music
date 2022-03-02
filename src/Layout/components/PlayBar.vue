@@ -175,7 +175,6 @@ export default {
         let currentIndex = this.playlist.findIndex(item => item.id === val)
         this.$store.commit('PlayBar/changeCurrentMusicIndex', currentIndex)
         this.$store.commit('PlayBar/changeCurrentMusicTotalDuration', this.playlist[currentIndex].dt)
-        console.log('根据当前获取到的id去更新索引', currentIndex)
       },
       deep: true,
       immediate: true,
