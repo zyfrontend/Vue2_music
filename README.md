@@ -1,29 +1,12 @@
-# music
+# Vue2 music
 
-## Project setup
+> 技术栈
+- Vue2
+- Element
+- axios
 
-```
-yarn install
-```
-
-### Compiles and hot-reloads for development
-
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-
-```
-yarn build
-```
-
-### Lints and fixes files
-
-```
-yarn lint
-```
-
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).
+> 实现功能
+- 首页
+- 轮播图
+- 歌单详情
+- 歌曲播放
