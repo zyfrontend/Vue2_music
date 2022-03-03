@@ -33,7 +33,7 @@
       </div>
       <div class="right">
         <div>{{ `${currentDuration}/${currentMusicTotalDuration}` }}</div>
-        <div class="list hov"><i class="iconfont icon-24gl-playlistMusic2"></i></div>
+        <div class="list hov"><i class="iconfont icon-24gl-playlistMusic2" @click="test"></i></div>
       </div>
     </div>
     <audio
@@ -50,6 +50,7 @@
 <script>
 import { getPlaySong, returnSecond, handleMusicTime } from '@/utils'
 import { mapGetters } from 'vuex'
+import { Message } from 'element-ui'
 let lastSecond = 0
 let durationNum = 0
 export default {
@@ -161,6 +162,12 @@ export default {
     gotoMusicDetail() {
       this.$router.push({
         path: '/musicdetail',
+      })
+    },
+    test() {
+      Message({
+        message: '功能还在开发中...',
+        type: 'error',
       })
     },
   },

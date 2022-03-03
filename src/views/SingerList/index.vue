@@ -17,7 +17,7 @@
     <div class="list">
       <el-row>
         <el-col class="flex" :xs="12" :sm="8" :md="8" :xl="6" :lg="6" v-for="item in singerList" :key="item.id">
-          <CoverBox :imgUrl="item.picUrl" :dataName="item.name"></CoverBox>
+          <CoverBox :imgUrl="item.picUrl" :dataName="item.name" @coverBoxClick="test"></CoverBox>
         </el-col>
       </el-row>
     </div>
@@ -28,6 +28,7 @@
 import { mapGetters } from 'vuex'
 import CategoryMenu from '@/components/CategoryMenu'
 import CoverBox from '@/components/CoverBox'
+import { Message } from 'element-ui'
 export default {
   data() {
     return {
@@ -112,6 +113,12 @@ export default {
       this.$store.commit('SingerList/changeSingerCurrentPage', 1)
       this.$store.commit('SingerList/changeSingerList', [])
       this.$store.dispatch('SingerList/getSingerList')
+    },
+    test() {
+      Message({
+        message: '功能还在开发中...',
+        type: 'error',
+      })
     },
   },
 }
