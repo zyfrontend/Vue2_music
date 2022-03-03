@@ -16,7 +16,7 @@
     </div>
     <div class="list">
       <el-row>
-        <el-col :xs="12" :sm="8" :md="8" :xl="6" :lg="6" v-for="item in singerList" :key="item.id">
+        <el-col class="flex" :xs="12" :sm="8" :md="8" :xl="6" :lg="6" v-for="item in singerList" :key="item.id">
           <CoverBox :imgUrl="item.picUrl" :dataName="item.name"></CoverBox>
         </el-col>
       </el-row>

@@ -1,8 +1,21 @@
+import { request } from '@/services'
+
 export default {
   namespaced: true,
   state() {
-    return {}
+    return {
+      userMusicLibrary: [],
+    }
   },
-  mutations: {},
-  actions: {},
+  mutations: {
+    changeUserMusicLibrary(state, data) {
+      state.userMusicLibrary = data
+    },
+  },
+  actions: {
+    async getUserMusicLibrary({ commit }, uid) {
+      const res = await request(`/user/playlist?uid=${uid}`)
+      commit('changeUserMusicLibrary', res.data.playlist)
+    },
+  },
 }

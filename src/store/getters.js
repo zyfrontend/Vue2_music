@@ -12,5 +12,6 @@ const getters = {
   userInfo: state => state.Login.userInfo,
   LeaderBoardList: state => state.LeaderBoard.LeaderBoardList,
   singerList: state => state.SingerList.singerList,
+  userMusicLibrary: state => state.MusicLibrary.userMusicLibrary,
 }
 export default getters

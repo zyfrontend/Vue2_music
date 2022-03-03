@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from '@/store'
+import { Message } from 'element-ui'
 
 Vue.use(VueRouter)
 
@@ -28,7 +30,7 @@ const routes = [
     name: 'MusicLibrary',
     show: true,
     component: () => import('@/views/MusicLibrary/index'),
-    meta: { title: '乐库', icon: 'el-icon-film' },
+    meta: { title: '个人乐库', icon: 'el-icon-film', needLogin: true },
   },
   {
     path: '/singerlist',
@@ -55,4 +57,40 @@ const router = new VueRouter({
   routes,
 })
 
+// 路由守卫
+router.beforeEach((to, form, next) => {
+  const islogin = store.state.Login.isLogin
+  console.log(islogin)
+  if (islogin) {
+    next()
+  } else {
+    if (to.name === 'MusicLibrary') {
+      Message({
+        message: '请先登录',
+        type: 'error',
+      })
+      return next({ path: '/' })
+    } else {
+      return next()
+    }
+  }
+})
+
 export default router
+
+/*
+*
+* beforeEnter: (to, form, next) => {
+      if (!to.meta.needLogin && !store.state.Login.userInfo.name) {
+        Message({
+          message: '请先登录',
+          type: 'error',
+        })
+        next({
+          path: '/',
+        })
+      } else {
+        next()
+      }
+    },
+* */

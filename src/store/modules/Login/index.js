@@ -7,7 +7,7 @@ export default {
     return {
       userInfo: getStorage('userInfo') ? getStorage('userInfo') : {},
       cookie: '',
-      isLogin: false,
+      isLogin: getStorage('isLogin') ? getStorage('isLogin') : false,
     }
   },
   mutations: {
@@ -32,7 +32,6 @@ export default {
         phone: phone,
         password: password,
       })
-
       // 是否登录成功
       const { code } = (res && res.data) || ''
       if (code === 200) {
