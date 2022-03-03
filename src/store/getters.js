@@ -10,5 +10,6 @@ const getters = {
   currentPlaybackState: state => state.PlayBar.currentPlaybackState,
   currentMusicLyric: state => state.PlayBar.currentMusicLyric,
   userInfo: state => state.Login.userInfo,
+  LeaderBoardList: state => state.LeaderBoard.LeaderBoardList,
 }
 export default getters

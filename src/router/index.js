@@ -24,10 +24,10 @@ const routes = [
     meta: { title: '排行榜', icon: 'el-icon-s-flag' },
   },
   {
-    path: '/musiclist',
-    name: 'MusicList',
+    path: '/musiclibrary',
+    name: 'MusicLibrary',
     show: true,
-    component: () => import('@/views/MusicList/index'),
+    component: () => import('@/views/MusicLibrary/index'),
     meta: { title: '乐库', icon: 'el-icon-film' },
   },
   {

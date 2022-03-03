@@ -40,6 +40,7 @@ export default {
           message: '登录成功',
           type: 'success',
         })
+        location.reload()
         commit('changeUserInfo', res.data.profile)
         commit('changeCookie', res.data.cookie)
         commit('changeIsLogin', true)
@@ -58,19 +59,25 @@ export default {
       }
     },
     // 退出登录
-    async userLogout({ commit }) {
+    async userLogout({ commit, dispatch }) {
       const res = await request('/logout')
       if (res.data.code === 200) {
         commit('changeIsLogin', false)
         window.sessionStorage.removeItem('userInfo')
         window.sessionStorage.removeItem('cookie')
         location.reload()
-        this.$router.go(0)
+        dispatch('reloadLoginState')
+        this.$router.push({ path: '/' })
         Message({
           message: '退出成功',
           type: 'success',
         })
       }
+    },
+    // 刷新登录状态
+    async reloadLoginState() {
+      const res = await request('/login/refresh')
+      console.log(res)
     },
   },
 }

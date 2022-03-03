@@ -5,11 +5,13 @@ import Discover from '@/store/modules/Discover'
 import PlaylistDetail from '@/store/modules/PlayListDetail'
 import PlayBar from '@/store/modules/PlayBar'
 import Login from '@/store/modules/Login'
+import LeaderBoard from '@/store/modules/LeaderBoard'
+import MusicLibrary from '@/store/modules/MusicLibrary'
 Vue.use(Vuex)
 export default new Vuex.Store({
   state: {},
   mutations: {},
   actions: {},
-  modules: { Discover, PlaylistDetail, PlayBar, Login },
+  modules: { Discover, PlaylistDetail, PlayBar, Login, LeaderBoard, MusicLibrary },
   getters,
 })
