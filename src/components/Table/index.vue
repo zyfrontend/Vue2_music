@@ -18,7 +18,7 @@
       <td style="width: 20%">{{ list.al ? list.al.name : '' }}</td>
       <td style="width: 10%">{{ list.dt }}</td>
     </tr>
-    更多请登录
+    <div v-if="tableData.length <= 10">更多请登录</div>
   </table>
 </template>
 <script>

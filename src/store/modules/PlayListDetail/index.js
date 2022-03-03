@@ -25,7 +25,6 @@ export default {
       res.data.playlist.tracks.map(item => {
         item.dt = formatMinuteSecond(item.dt)
       })
-
       console.log(res.data.playlist)
     },
   },

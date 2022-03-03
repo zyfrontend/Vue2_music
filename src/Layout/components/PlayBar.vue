@@ -264,11 +264,6 @@ export default {
     }
   }
   .list {
-    width: 50px;
-    height: 50px;
-    .iconfont {
-      font-size: 55px;
-    }
   }
 }
 </style>

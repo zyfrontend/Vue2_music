@@ -6,7 +6,14 @@
     </el-aside>
     <el-container style="background-color: #1e1e1f">
       <el-header height="100px" class="header-box">
-        <div class="avatar"><i class="iconfont icon-24gl-userGroup"></i></div>
+        <div class="back">
+          <i @click="$router.go(-1)" class="iconfont icon-24gl-arrowLeft2"></i>
+          <i @click="$router.go(1)" class="iconfont icon-24gl-arrowRight2"></i>
+        </div>
+        <div class="avatar">
+          <img @click="LoginShow = true" :src="userInfo.avatarUrl" alt="" v-if="userInfo.avatarUrl" />
+          <i @click="LoginShow = true" class="iconfont icon-24gl-userGroup" v-else></i>
+        </div>
       </el-header>
       <el-main class="layout-main">
         <transition :name="transitionName">
@@ -15,22 +22,35 @@
       </el-main>
       <PlayBar class="fixed-bottom"></PlayBar>
     </el-container>
+    <transition :name="transitionName">
+      <Login v-show="LoginShow" @closeLogin="closeLogin"></Login>
+    </transition>
   </el-container>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 import SideBar from '@/Layout/components/SideBar'
 import PlayBar from './components/PlayBar'
+import Login from '@/components/Login'
 export default {
   data() {
     return {
       transitionName: '',
+      LoginShow: false,
     }
   },
   components: {
     SideBar,
     PlayBar,
+    Login,
+  },
+  methods: {
+    closeLogin() {
+      this.LoginShow = false
+    },
   },
   computed: {
+    ...mapGetters(['userInfo']),
     routes() {
       const copyRoutes = [...this.$router.options.routes]
       copyRoutes.shift() // 去除第一位重定向的路由
@@ -61,8 +81,31 @@ export default {
   position: relative;
   .header-box {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
+  }
+  .back {
+    width: 200px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+
+    .iconfont {
+      font-size: 35px;
+      margin: 0 30px;
+      width: 40px;
+      color: white;
+      height: 40px;
+      border-radius: 50%;
+      transition: all 0.3s;
+      padding: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      &:hover {
+        background-color: #2e2e2f;
+      }
+    }
   }
   .avatar {
     width: 78px;
